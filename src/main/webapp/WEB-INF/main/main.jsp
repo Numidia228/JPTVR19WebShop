@@ -22,7 +22,7 @@
                            aria-current="page" href="addProduct">Добавить товар</a>
                         <a class="nav-link <c:if test="${activeListProducts}">active</c:if>" href="listProducts">Список
                             товаров</a>
-                        <a class="nav-link <c:if test="${activeListBuyers}">active</c:if>" href="listBuyers">Список
+                        <a class="nav-link <c:if test="${activeListBuyers}">active</c:if>" href="listBuyers" id="listBuyers">Список
                             покупателей</a>
                         <a class="nav-link <c:if test="${activeBuyProduct}">active</c:if>" href="listProducts">Купить
                             товар</a>
@@ -55,7 +55,7 @@
 
                                     <li><span><hr></span></li>
 
-                                    <li><a class="dropdown-item" href="adminForm">Панель админа</a></li>
+                                    <li><a class="dropdown-item" href="adminForm" id="adminForm">Панель админа</a></li>
 
                                     <li><span><hr></span></li>
 
@@ -107,7 +107,7 @@
                                     </li>
                                     <li><a class="dropdown-item" href="checkQuestions">Помощь</a></li>
                                     <li>
-                                        <a class="dropdown-item d-flex flex-row justify-content-between" href="logout">Выйти
+                                        <a class="dropdown-item d-flex flex-row justify-content-between" href="logout" id="logout">Выйти
                                             <svg
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-door-open-fill my-auto"

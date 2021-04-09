@@ -30,7 +30,7 @@
                                 </c:if>${buyer.name} ${buyer.lastname}</h4>
                                     <p class="text-secondary mb-1"><c:if
                                             test="${buyer.employee != null && buyer.employeeCompany != null}">${buyer.employee}, ${buyer.employeeCompany}</c:if></p>
-                                    <a href="editProfileForm" class="btn btn-outline-primary mt-3">Изменить</a>
+                                    <a href="editProfileForm" class="btn btn-outline-primary mt-3" id="editProfile">Изменить</a>
                                 </div>
                             </div>
                         </div>

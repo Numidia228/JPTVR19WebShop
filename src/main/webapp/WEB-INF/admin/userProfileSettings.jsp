@@ -255,19 +255,22 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="text-right mt-2 d-flex">
             <div style="margin-left: auto">
                 <button data-bs-target="#discardModal" data-bs-toggle="modal"
                         id="discardButton" class="btn btn-secondary">Отменить
                 </button>
-                <button type="submit" id="submit" class="btn btn-primary">Сохранить</button>
+                <input type="submit" id="submit" class="btn btn-primary" value="Сохранить">
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="discardModal" tabindex="-1" aria-labelledby="discardModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">

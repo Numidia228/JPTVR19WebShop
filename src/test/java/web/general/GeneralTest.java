@@ -54,7 +54,7 @@ public class GeneralTest {
     public void loginUserTest(String login, String password) {
         System.out.println("loginUserTest: ");
         String result = menuPage.getLoginFormPage().loginValidUser(login, password).getMessageInfo();
-        String expected = "Вы вошли как " + login;
+        String expected = "Добро пожаловать " + "\"" + login + "\"" + ".";
         System.out.println("Expected: " + expected);
         System.out.println("Result: " + result);
         Assert.assertEquals(result, expected);
@@ -66,9 +66,9 @@ public class GeneralTest {
         String result = menuPage.getMessageInfo();
         String expected;
         if (allowed) {
-            expected = "Роль изменена";
+            expected = "Изменить роль невозможно!";
         } else {
-            expected = "Изменить роль невозможно";
+            expected = "Роль изменена!";
         }
         System.out.println("Expected: " + expected);
         System.out.println("Result: " + result);
@@ -79,7 +79,7 @@ public class GeneralTest {
         System.out.println("logoutTest: ");
         menuPage.logout();
         String result = menuPage.getMessageInfo();
-        String expected = "Вы вышли";
+        String expected = "Вы вышли из системы.";
         System.out.println("Expected: " + expected);
         System.out.println("Result: " + result);
         Assert.assertEquals(result, expected);

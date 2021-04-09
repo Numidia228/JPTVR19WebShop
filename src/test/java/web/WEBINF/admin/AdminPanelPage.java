@@ -20,9 +20,9 @@ public class AdminPanelPage {
 
     public void validLostAccess(){
         Select selectUsers = new Select(driver.findElement(userIdSelectBy));
-        selectUsers.selectByVisibleText("Kirill Goritski, логин: admin, роль: ADMIN");
+        selectUsers.selectByVisibleText("asd asd, логин: asd, роль: BUYER");
         Select selectRoles = new Select(driver.findElement(roleIdSelectBy));
-        selectRoles.selectByVisibleText("BUYER");
+        selectRoles.selectByVisibleText("ADMIN");
         driver.findElement(buttonSubmitBy).click();
     }
 }

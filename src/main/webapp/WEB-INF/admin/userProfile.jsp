@@ -24,7 +24,7 @@
                                     <p class="text-secondary mb-1"><c:if
                                             test="${buyer.employee != null && buyer.employeeCompany != null}">${buyer.employee}, ${buyer.employeeCompany}</c:if></p>
                                     <a href="editUserProfileSettings?buyerId=${buyer.id}"
-                                       class="btn btn-outline-primary mt-3">Изменить</a>
+                                       class="btn btn-outline-primary mt-3" id="editProfile">Изменить</a>
                                     <a href="#" class="btn btn-danger  mt-3">Удалить аккаунт</a>
                                 </div>
                             </div>

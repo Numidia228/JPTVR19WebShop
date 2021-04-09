@@ -24,7 +24,7 @@ public class MenuPage {
     }
 
     public LoginFormPage getLoginFormPage() {
-        driver.findElement(By.id("loginForm")).click();
+        driver.findElement(loginFormBy).click();
         return new LoginFormPage(driver);
     }
 

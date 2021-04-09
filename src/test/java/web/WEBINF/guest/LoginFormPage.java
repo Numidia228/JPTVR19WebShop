@@ -8,16 +8,16 @@ public class LoginFormPage {
     protected WebDriver driver;
     private final By loginBy = By.id("login");
     private final By passwordBy = By.id("password");
-    private final By loginButtonBy = By.xpath("input[type='submit']");
+    private final By loginButtonBy = By.cssSelector("#loginForm .submit");
 
     public LoginFormPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public IndexPage loginValidUser(String login, String password) {
-        driver.findElement(By.id("login")).sendKeys(login);
-        driver.findElement(By.id("password")).sendKeys(password);
-        driver.findElement(By.cssSelector("#loginForm .submit")).click();
+        driver.findElement(loginBy).sendKeys(login);
+        driver.findElement(passwordBy).sendKeys(password);
+        driver.findElement(loginButtonBy).click();
         return new IndexPage(driver);
     }
 

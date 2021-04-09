@@ -10,7 +10,7 @@
                 <c:forEach var="entry" items="${usersMap}">
                     <option value="${entry.key.id}"
                             <c:if test="${userId == entry.key.id}">selected</c:if>>${entry.key.buyer.name} ${entry.key.buyer.lastname},
-                        Логин: ${entry.key.login}, роль: ${entry.value}</option>
+                        логин: ${entry.key.login}, роль: ${entry.value}</option>
                 </c:forEach>
             </select>
         </div>

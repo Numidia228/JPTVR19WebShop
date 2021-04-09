@@ -242,7 +242,7 @@
         <div class="text-right mt-2 d-flex">
             <div style="margin-left: auto">
                 <a href="checkProfile" class="btn btn-secondary">Отменить</a>
-                <button type="submit" id="submit" class="btn btn-primary">Сохранить</button>
+                <input type="submit" id="submit" class="btn btn-primary" value="Сохранить">
             </div>
         </div>
     </div>

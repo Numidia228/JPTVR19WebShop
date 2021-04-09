@@ -2,21 +2,19 @@ package web.WEBINF.admin;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class ListBuyersPage {
     protected WebDriver driver;
-    private final By tableListBuyersBy = By.id("tableListBuyers");
-    private final By tagA_By = By.tagName("a");
+    private final By checkProfileBy = By.cssSelector("#userProfile");
+    private final By editProfileBy = By.cssSelector("#editProfile");
 
     public ListBuyersPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public EditUserPage getEditUserPage(String login) {
-        WebElement table = driver.findElement(tableListBuyersBy);
-        WebElement tr = table.findElement(By.xpath("//tr[td[text()='" + login + "']]"));
-        tr.findElement(tagA_By).click();
+        driver.findElement(checkProfileBy).click();
+        driver.findElement(editProfileBy).click();
         return new EditUserPage(driver);
     }
 }

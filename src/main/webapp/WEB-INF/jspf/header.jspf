@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 <body style="position: relative;">
 <div>
     <c:import url="/WEB-INF/main/main.jsp"/>
-    <p class="text-center text-danger text-danger" style="margin: 1rem auto;">${info}</p>
+    <p id="info" class="text-center text-danger text-danger" style="margin: 1rem auto;">${info}</p>
 </div>
 
 <style>

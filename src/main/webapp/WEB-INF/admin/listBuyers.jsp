@@ -6,7 +6,7 @@
     <p class="text-center my-3" style="font-size: 18px">Всего зарегистрировано пользователей:
         <strong>${usersCount}</strong>
     <p>
-    <table class="table table-striped table-hover mx-auto mt-5">
+    <table class="table table-striped table-hover mx-auto mt-5" id="tableListBuyers">
         <thead class="table table-striped text-center">
         <th>№</th>
         <th>Имя и фамилия</th>
@@ -18,7 +18,7 @@
         <th>Статус</th>
         <th></th>
         </thead>
-        <tbody class="text-center table-striped">
+        <tbody class="text-center table-striped" id="tbody">
         <c:forEach var="entry" items="${usersMapWithArrayRoles}" varStatus="status">
             <tr>
                 <td>${status.count}</td>
@@ -42,7 +42,7 @@
                             <span>${entry.value[0]}</span>
                             <c:if test="${entry.key.id != 1}">
                                 <small style="margin-top: -3px"
-                                       class=" <c:if test="${entry.key.id eq user.id}">d-none</c:if>">
+                                       <%--class=" <c:if test="${entry.key.id eq user.id}">d-none</c:if>"--%>>
                                     <form action="changeRoleFromListUsers">
                                         <a href="changeRoleFromListUsers?userId=${entry.key.id}"
                                            class="badge bg-primary mx-auto">Изменить</a>
@@ -73,12 +73,12 @@
                 <th class="">
                     <c:if test="${user.buyer.id != entry.key.buyer.id}">
                         <a style="text-decoration: none; font-weight: bold" class="btn btn-primary"
-                           href="checkUserProfile?buyerId=${entry.key.buyer.id}">Профиль</a>
+                           href="checkUserProfile?buyerId=${entry.key.buyer.id}" id="userProfile">Профиль</a>
                     </c:if>
 
                     <c:if test="${user.buyer.id == entry.key.buyer.id}">
                         <a style="text-decoration: none; font-weight: bold" class="btn btn-primary"
-                           href="checkProfile?buyerId=${entry.key.buyer.id}">Профиль</a>
+                           href="checkProfile?buyerId=${entry.key.buyer.id}" id="userProfile">Профиль</a>
                     </c:if>
                 </th>
             </tr>

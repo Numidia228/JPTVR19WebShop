@@ -6,15 +6,15 @@ import web.IndexPage;
 
 public class EditUserPage {
     protected WebDriver driver;
-    private final By buttonSubmitBy = By.xpath("//input[@type='submit']");
+    private final By submitButtonBy = By.cssSelector("#submit");
 
     public EditUserPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public IndexPage changeUserProfile() {
-        driver.findElement(buttonSubmitBy).click();
-        return new IndexPage(driver);
+    public void changeUserProfile() {
+        driver.findElement(submitButtonBy).click();
+        new IndexPage(driver);
     }
 
 }

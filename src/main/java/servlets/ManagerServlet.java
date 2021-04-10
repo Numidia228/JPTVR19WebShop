@@ -1,8 +1,6 @@
 package servlets;
 
 import entity.*;
-import session.*;
-
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import session.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,11 +20,12 @@ import java.util.Map;
         "/createProduct",
         "/addCategory",
         "/createCategory",
+        "/removeCategory",
+        "/deleteCategory",
         "/editBuyerForm",
         "/editBuyer",
         "/showBoughtProduct",
         "/uploadForm",
-        "/checkUserProfile",
 })
 
 public class ManagerServlet extends HttpServlet {
@@ -127,6 +127,7 @@ public class ManagerServlet extends HttpServlet {
 
                 Category category = categoryFacade.find(Long.parseLong(categoryId));
                 Cover cover = coverFacade.find(Long.parseLong(coverId));
+
                 Product product = new Product(brand, series, model, color, weight, length, width, height, screenDiagonal, resolution, touchScreen, operationSystem, cpuClass, cpuType, cpuModel, cpuFrequency, ramType, ramSize, ramClockSpeed, ssd, ssdCapacity, hdd, hddCapacity, totalPcMemory, gpuType, gpuModel, diskDrive, camera, microphone, bodyMaterial, russianKeyboardLayout, estonianKeyboardLayout, backlitKeyboard, waterproofKeyboard, batteryTechnology, batteryLife, guarantee, Double.parseDouble(price), Integer.parseInt(count), category, cover);
                 productFacade.create(product);
 
@@ -135,6 +136,9 @@ public class ManagerServlet extends HttpServlet {
                 break;
 
             case "/addCategory":
+                categoryList = categoryFacade.findAll();
+
+                request.setAttribute("categoryList", categoryList);
                 request.getRequestDispatcher(LoginServlet.pathToFile.getString("addCategory")).forward(request, response);
                 break;
 
@@ -145,6 +149,23 @@ public class ManagerServlet extends HttpServlet {
                 categoryFacade.create(category);
 
                 request.setAttribute("info", "Категория " + '"' + category.getCategoryName() + '"' + " успешно добавлена.");
+                request.getRequestDispatcher("/addProduct").forward(request, response);
+                break;
+
+            case "/removeCategory":
+                categoryList = categoryFacade.findAll();
+
+                request.setAttribute("categoryList", categoryList);
+                request.getRequestDispatcher(LoginServlet.pathToFile.getString("removeCategory")).forward(request, response);
+                break;
+
+            case "/deleteCategory":
+                categoryId = request.getParameter("categoryId");
+
+                category = categoryFacade.find(Long.parseLong(categoryId));
+                categoryFacade.remove(category);
+
+                request.setAttribute("info", "Категория " + '"' + category.getCategoryName() + '"' + " успешно удалена.");
                 request.getRequestDispatcher("/addProduct").forward(request, response);
                 break;
 
@@ -168,6 +189,7 @@ public class ManagerServlet extends HttpServlet {
                 buyer.setMoney(Double.parseDouble(money));
                 buyer.setEmail(email);
                 buyerFacade.edit(buyer);
+
                 request.setAttribute("buyerId", buyerId);
                 request.setAttribute("buyer", buyer);
                 request.setAttribute("info", "Пользователь " + buyer.getName() + " " + buyer.getLastname() + " был успешно изменён.");
@@ -191,14 +213,6 @@ public class ManagerServlet extends HttpServlet {
 
             case "/uploadForm":
                 request.getRequestDispatcher(LoginServlet.pathToFile.getString("uploadForm")).forward(request, response);
-                break;
-
-            case "/checkUserProfile":
-                buyerId = request.getParameter("buyerId");
-                buyer = buyerFacade.find(Long.parseLong(buyerId));
-
-                request.setAttribute("buyer", buyer);
-                request.getRequestDispatcher(LoginServlet.pathToFile.getString("userProfile")).forward(request, response);
                 break;
         }
     }

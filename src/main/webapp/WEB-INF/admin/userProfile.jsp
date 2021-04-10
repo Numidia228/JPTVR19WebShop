@@ -23,9 +23,8 @@
                                     ${buyer.name} ${buyer.lastname}</h4>
                                     <p class="text-secondary mb-1"><c:if
                                             test="${buyer.employee != null && buyer.employeeCompany != null}">${buyer.employee}, ${buyer.employeeCompany}</c:if></p>
-                                    <a href="editUserProfileSettings?buyerId=${buyer.id}"
+                                    <a href="editUserProfileSettingsForm?buyerId=${buyer.id}"
                                        class="btn btn-outline-primary mt-3" id="editProfile">Изменить</a>
-                                    <a href="#" class="btn btn-danger  mt-3">Удалить аккаунт</a>
                                 </div>
                             </div>
                         </div>
@@ -228,17 +227,15 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3"><h6 class="mb-0">Полное имя</h6></div>
-                                <div class="col-sm-9 text-secondary  d-flex flex-row justify-content-between"><c:if
-                                        test="${buyer.name eq null && buyer.lastname eq null}">null</c:if>${buyer.name} ${buyer.lastname}
+                                <div class="col-sm-9 text-secondary  d-flex flex-row justify-content-between">
+                                    ${buyer.name} ${buyer.lastname}
                                 </div>
                             </div>
-
                             <hr>
-
                             <div class="row">
                                 <div class="col-sm-3"><h6 class="mb-0">E-mail</h6></div>
-                                <div class="col-sm-9 text-secondary d-flex flex-row justify-content-between"><c:if
-                                        test="${buyer.email eq null}">null</c:if>${buyer.email}
+                                <div class="col-sm-9 text-secondary d-flex flex-row justify-content-between">
+                                    ${buyer.email}
                                 </div>
                             </div>
 
@@ -247,7 +244,7 @@
                             <div class="row">
                                 <div class="col-sm-3"><h6 class="mb-0">Номер телефона</h6></div>
                                 <div class="col-sm-9 text-secondary d-flex flex-row justify-content-between"><c:if
-                                        test="${buyer.phoneNumber eq null}">null</c:if>
+                                        test="${buyer.phoneNumber eq null}">Не указано</c:if>
                                     <c:if test="${buyer.phoneNumber != null}">
                                         +372 ${buyer.phoneNumber}
                                     </c:if>
@@ -259,7 +256,7 @@
                             <div class="row flex-nowrap">
                                 <div class="col-sm-3"><h6 class="mb-0">Адрес</h6></div>
                                 <div class="col-sm-9 text-secondary d-flex flex-row justify-content-between"><c:if
-                                        test="${buyer.address eq null}">null</c:if>
+                                        test="${buyer.address eq null}">Не указано</c:if>
                                     ${buyer.address}
                                 </div>
                             </div>
@@ -269,20 +266,42 @@
                             <div class="row">
                                 <div class="col-sm-3"><h6 class="mb-0">Статус</h6></div>
                                 <div class="col-sm-9 text-secondary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                         class="bi bi-check-all" viewBox="0 0 16 16" style="fill: #007bff">
-                                        <path d="M8.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14l.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"></path>
-                                    </svg>
-                                    <span>Подтверждён</span>
+                                    <c:if test="${user.userStatus eq 'confirmed'}">
+                                            <span>
+                                                <i>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                         fill="currentColor"
+                                                         class="bi bi-check-all" viewBox="0 0 16 16"
+                                                         style="fill: #007bff; margin-top: -3px">
+                                                <path d="M8.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14l.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"></path>
+                                                    </svg>
+                                                </i>
+                                                <strong>Подтверждён</strong>
+                                            </span>
+                                    </c:if>
+
+                                    <c:if test="${user.userStatus eq 'unconfirmed'}">
+                                        <span>
+                                            <i>
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                  fill="currentColor" class="bi bi-shield-fill-exclamation"
+                                                  viewBox="0 0 16 16" style="fill: #d9534f; margin-top: -3px">
+                                                <path fill-rule="evenodd"
+                                                      d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm-.55 8.502L7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0zM8.002 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
+                                                </svg>
+                                            </i>
+                                            <strong>Не подтверждён</strong>
+                                        </span>
+                                    </c:if>
                                 </div>
                             </div>
 
                             <hr>
 
-                            <div class="row flex-nowrap">
+                            <div class="row">
                                 <div class="col-sm-3"><h6 class="mb-0">Роль</h6></div>
                                 <div class="col-sm-9 text-secondary d-flex flex-row justify-content-between">
-                                    <span><i style="color: red">СДЕЛАТЬ РОЛЬ</i></span>
+                                    ${roleForBuyer}
                                 </div>
                             </div>
                         </div>

@@ -41,8 +41,7 @@
                         <div class="d-flex flex-column">
                             <span>${entry.value[0]}</span>
                             <c:if test="${entry.key.id != 1}">
-                                <small style="margin-top: -3px"
-                                       <%--class=" <c:if test="${entry.key.id eq user.id}">d-none</c:if>"--%>>
+                                <small style="margin-top: -3px" class="<c:if test="${entry.key.id eq user.id}">d-none</c:if>">
                                     <form action="changeRoleFromListUsers">
                                         <a href="changeRoleFromListUsers?userId=${entry.key.id}"
                                            class="badge bg-primary mx-auto">Изменить</a>

@@ -19,7 +19,7 @@
         <c:forEach var="entry" items="${historyListMap}" varStatus="status">
             <tr>
                 <td><em><strong>${status.count}.</strong></em></td>
-                <td>${entry.key.product.title} ${entry.key.product.model}</td>
+                <td>${entry.key.product.brand} ${entry.key.product.series} ${entry.key.product.model}</td>
                 <td>
                     <c:if test="${entry.key.status == 'success'}">
                         <span class="badge bg-success badge-success">Оплачен</span>

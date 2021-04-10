@@ -19,6 +19,8 @@ import java.util.Map;
         "/listBuyers",
         "/adminForm",
         "/setRole",
+        "/checkUserProfile",
+        "/editUserProfileSettingsForm",
         "/editUserProfileSettings",
         "/confirmUserFromListUsers",
         "/changeRoleFromListUsers",
@@ -82,8 +84,6 @@ public class AdminServlet extends HttpServlet {
                 break;
 
             case "/adminForm":
-                listProducts = productFacade.findAll();
-                request.setAttribute("listProducts", listProducts);
                 request.setAttribute("activeAdminPanel", "true");
 
                 Map<User, String> usersMap = new HashMap<>();
@@ -114,12 +114,151 @@ public class AdminServlet extends HttpServlet {
                 request.getRequestDispatcher(LoginServlet.pathToFile.getString("index")).forward(request, response);
                 break;
 
-            case "/editUserProfileSettings":
+            case "/checkUserProfile":
                 String buyerId = request.getParameter("buyerId");
+
                 Buyer buyer = buyerFacade.find(Long.parseLong(buyerId));
+                user = userFacade.find(buyer.getId());
+
+                String roleForBuyer = userRolesFacade.getTopRoleForUser(user);
 
                 request.setAttribute("buyer", buyer);
-                request.getRequestDispatcher(LoginServlet.pathToFile.getString("userProfileSettings")).forward(request, response);
+                request.setAttribute("user", user);
+                request.setAttribute("roleForBuyer", roleForBuyer);
+                request.getRequestDispatcher(LoginServlet.pathToFile.getString("userProfile")).forward(request, response);
+                break;
+
+            case "/editUserProfileSettingsForm":
+                buyerId = request.getParameter("buyerId");
+
+                buyer = buyerFacade.find(Long.parseLong(buyerId));
+                user = userFacade.find(buyer.getId());
+
+                request.setAttribute("user", user);
+                request.setAttribute("buyer", buyer);
+                request.getRequestDispatcher(LoginServlet.pathToFile.getString("buyerProfileSettings")).forward(request, response);
+                break;
+
+            case "/editUserProfileSettings":
+                buyerId = request.getParameter("buyerId");
+                String name = request.getParameter("name");
+                String lastname = request.getParameter("lastname");
+                String town = request.getParameter("town");
+                String buyerDescription = request.getParameter("buyerDescription");
+                String birthDate = request.getParameter("birthDate");
+                String employee = request.getParameter("employee");
+                String employeeCompany = request.getParameter("employeeCompany");
+                String address = request.getParameter("address");
+                String userWebsite = request.getParameter("userWebsite");
+                String userGithub = request.getParameter("userGithub");
+                String userTwitter = request.getParameter("userTwitter");
+                String userInstagram = request.getParameter("userInstagram");
+                String userFacebook = request.getParameter("userFacebook");
+                String userVk = request.getParameter("userVk");
+                String userTelegram = request.getParameter("userTelegram");
+
+                String password = request.getParameter("password");
+                String newPassword = request.getParameter("newPassword");
+                String newPasswordRepeat = request.getParameter("newPasswordRepeat");
+
+
+                if ("".equals(name) || name == null) {
+                    name = null;
+                }
+
+                if ("".equals(lastname) || lastname == null) {
+                    lastname = null;
+                }
+
+                if ("".equals(employee) || employee == null) {
+                    employee = null;
+                }
+
+                if ("".equals(employeeCompany) || employeeCompany == null) {
+                    employeeCompany = null;
+                }
+
+                if ("".equals(town) || town == null) {
+                    town = null;
+                }
+
+                if ("".equals(buyerDescription) || buyerDescription == null) {
+                    buyerDescription = null;
+                }
+
+                if ("".equals(birthDate) || birthDate == null) {
+                    birthDate = null;
+                }
+
+                if ("".equals(address) || address == null) {
+                    address = null;
+                }
+
+                if ("".equals(userWebsite) || userWebsite == null) {
+                    userWebsite = null;
+                }
+
+                if ("".equals(userGithub) || userGithub == null) {
+                    userGithub = null;
+                }
+
+                if ("".equals(userTwitter) || userTwitter == null) {
+                    userTwitter = null;
+                }
+
+                if ("".equals(userInstagram) || userInstagram == null) {
+                    userInstagram = null;
+                }
+
+                if ("".equals(userFacebook) || userFacebook == null) {
+                    userFacebook = null;
+                }
+
+                if ("".equals(userVk) || userVk == null) {
+                    userVk = null;
+                }
+
+                if ("".equals(userTelegram) || userTelegram == null) {
+                    userTelegram = null;
+                }
+
+                if (!"".equals(password) && !"".equals(newPassword) && !"".equals(newPasswordRepeat)) {
+                    if (password.equals(user.getPassword())) {
+                        if (newPasswordRepeat.equals(newPassword)) {
+                            password = newPassword;
+                        } else {
+                            request.setAttribute("info", "Неверно указан пароль!");
+                            password = user.getPassword();
+                        }
+                    }
+                } else {
+                    password = user.getPassword();
+                }
+
+                buyer = buyerFacade.find(Long.parseLong(buyerId));
+
+                buyer.setName(name);
+                buyer.setLastname(lastname);
+                buyer.setEmployee(employee);
+                buyer.setEmployeeCompany(employeeCompany);
+                buyer.setTown(town);
+                buyer.setBuyerDescription(buyerDescription);
+                buyer.setBirthDate(birthDate);
+                buyer.setAddress(address);
+                buyer.setUserWebsite(userWebsite);
+                buyer.setUserGithub(userGithub);
+                buyer.setUserTwitter(userTwitter);
+                buyer.setUserInstagram(userInstagram);
+                buyer.setUserFacebook(userFacebook);
+                buyer.setUserVk(userVk);
+                buyer.setUserTelegram(userTelegram);
+                buyerFacade.edit(buyer);
+
+                user.setPassword(password);
+                userFacade.edit(user);
+
+                request.setAttribute("buyer", buyer);
+                request.getRequestDispatcher("/checkUserProfile").forward(request, response);
                 break;
 
             case "/confirmUserFromListUsers":
@@ -158,6 +297,8 @@ public class AdminServlet extends HttpServlet {
                 role = roleFacade.find(Long.parseLong(roleId));
                 userRoles = new UserRoles(user, role);
                 userRolesFacade.setNewRole(userRoles);
+
+                request.setAttribute("info", "Роль пользователя " + '"' + user.getLogin() + '"' + " изменена на " + '"' + role.getRoleName() + '"' + ".");
                 request.getRequestDispatcher("/listBuyers").forward(request, response);
                 break;
         }

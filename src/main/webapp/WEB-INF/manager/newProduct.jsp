@@ -3,13 +3,8 @@
 
 <h3 class="w-100 text-center my-5">Добавить новый товар</h3>
 <div class="row w-100">
-    <label class="text-center w-25 mx-auto">
-        <a href="uploadForm" class="w-100 col-4 mx-auto btn btn-lg btn-outline-primary">Загрузить обложку для
-            товара
-        </a>
-    </label>
 
-    <p class="fw-bold text-muted text-center mt-5">Общие характеристики</p>
+    <p class="fw-bold text-muted text-center">Общие характеристики</p>
 
     <form action="createProduct" method="POST">
 
@@ -22,9 +17,7 @@
             </select>
             <a type="button" class="btn btn-outline-primary" href="addCategory">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"></path>
-                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
-                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path>
+                    <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"></path>
                 </svg>
                 <span class="visually-hidden">Button</span>
             </a>
@@ -328,6 +321,7 @@
             <span class="input-group-text">Тип видеокарты</span>
             <select class="form-select" name="gpuType">
                 <option value="Intel" selected>Intel</option>
+                <option value="Nvidia">Nvidia</option>
                 <option value="AMD">AMD</option>
             </select>
         </div>
@@ -459,6 +453,12 @@
                     <option value="${cover.id}">${cover.description}</option>
                 </c:forEach>
             </select>
+            <a type="button" class="btn btn-outline-primary" href="uploadForm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
+                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"></path>
+                </svg>
+                <span class="visually-hidden"></span>
+            </a>
         </div>
 
         <div class="w-50 mx-auto mt-5" style="margin-bottom: 10rem">

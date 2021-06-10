@@ -19,34 +19,36 @@
     }, 1);
 </script>
 
-<form method="get">
-    <div class="ant-carousel <c:if test="${empty listProducts}">d-none</c:if>">
-        <div class="ant-carousel-hider">
-            <ul class="ant-carousel-list d-flex flex-row justify-content-center">
-                <c:forEach var="product" items="${listProducts}" varStatus="productId">
-                    <li class="ant-carousel-element">
-                        <div class="card m-2 mt-4 d-flex" style="width: 13.5rem">
-                            <img src="insertCover/${product.cover.path}" class="card-img-top" alt="..."
-                                 style="max-width: 12rem; max-height: 360px; margin: 0 auto; margin-top: 11px">
-                            <div style="height: 150px; margin-top: auto; padding: 16px">
-                                <h5 class="card-title"
-                                    style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 12rem; line-height: 2rem">${product.brand} ${product.series}</h5>
-                                <p class="card-text"
-                                   style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 12rem; margin: 6px 0; margin-bottom: 16px">
-                                    Цена:
-                                    <strong>${product.price}€</strong></p>
-                                <a href="listProducts" class="btn btn-primary w-100">Список товаров</a>
-                            </div>
-                        </div>
-                    </li>
-                </c:forEach>
-            </ul>
-        </div>
-        <div class="ant-carousel-arrow-left"></div>
-        <div class="ant-carousel-arrow-right"></div>
-        <div class="ant-carousel-dots"></div>
-    </div>
-</form>
+<%--<c:if test="${productCount != 4}">--%>
+<%--    <form method="get">--%>
+<%--        <div class="ant-carousel <c:if test="${empty listProducts}">d-none</c:if>">--%>
+<%--            <div class="ant-carousel-hider">--%>
+<%--                <ul class="ant-carousel-list ">--%>
+<%--                    <c:forEach var="product" items="${listProducts}" varStatus="productId">--%>
+<%--                        <li class="ant-carousel-element">--%>
+<%--                            <div class="card m-2 mt-4 d-flex" style="width: 13.5rem">--%>
+<%--                                <img src="insertCover/${product.cover.path}" class="card-img-top" alt="..."--%>
+<%--                                     style="max-width: 12rem; max-height: 360px; margin: 0 auto; margin-top: 11px">--%>
+<%--                                <div style="height: 150px; margin-top: auto; padding: 16px">--%>
+<%--                                    <h5 class="card-title"--%>
+<%--                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 12rem; line-height: 2rem">${product.brand} ${product.series}</h5>--%>
+<%--                                    <p class="card-text"--%>
+<%--                                       style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 12rem; margin: 6px 0; margin-bottom: 16px">--%>
+<%--                                        Цена:--%>
+<%--                                        <strong>${product.price}€</strong></p>--%>
+<%--                                    <a href="listProducts" class="btn btn-primary w-100">Список товаров</a>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                    </c:forEach>--%>
+<%--                </ul>--%>
+<%--            </div>--%>
+<%--            <div class="ant-carousel-arrow-left"></div>--%>
+<%--            <div class="ant-carousel-arrow-right"></div>--%>
+<%--            <div class="ant-carousel-dots"></div>--%>
+<%--        </div>--%>
+<%--    </form>--%>
+<%--</c:if>--%>
 
 <style>
     .ant-carousel {
@@ -147,6 +149,7 @@
         } else {
             this.crslRoot = document.querySelector('.ant-carousel')
         }
+        ;
 
         // Carousel objects
         this.crslList = this.crslRoot.querySelector('.ant-carousel-list');
@@ -159,12 +162,12 @@
         // Initialization
         this.options = Ant.defaults;
         Ant.initialize(this)
-    }
+    };
 
     Ant.defaults = {
 
         // Default options for the carousel
-        elemVisible: 4, // Кол-во отображаемых элементов в карусели
+        elemVisible: 3, // Кол-во отображаемых элементов в карусели
         loop: true,     // Бесконечное зацикливание карусели
         auto: true,     // Автоматическая прокрутка
         interval: 5000, // Интервал между прокруткой элементов (мс)
@@ -199,6 +202,7 @@
                 this.crslList.insertBefore(buf, this.crslList.firstElementChild);
                 this.crslList.removeChild(elm)
             }
+            ;
             this.crslList.style.marginLeft = '-' + this.elemWidth * num + 'px';
             let compStyle = window.getComputedStyle(this.crslList).marginLeft;
             this.crslList.style.cssText = 'transition:margin ' + this.options.speed + 'ms ease;';
@@ -238,6 +242,7 @@
                     this$.crslList.appendChild(buf);
                     this$.crslList.removeChild(elm)
                 }
+                ;
                 this$.crslList.style.marginLeft = '0px'
             }, this.options.speed)
         }
@@ -271,7 +276,7 @@
         // Functions
         function getTime() {
             return new Date().getTime();
-        }
+        };
 
         function setAutoScroll() {
             that.autoScroll = setInterval(function () {
@@ -281,7 +286,7 @@
                     that.elemNext()
                 }
             }, that.options.interval)
-        }
+        };
 
         // Start initialization
         if (that.elemCount <= that.options.elemVisible) {   // Отключить навигацию
@@ -292,6 +297,7 @@
             that.leftArrow.style.display = 'none';
             that.rightArrow.style.display = 'none'
         }
+        ;
 
         if (!that.options.loop) {       // если нет цикла - уточнить количество точек
             that.dotsVisible = that.elemCount - that.options.elemVisible + 1;
@@ -306,6 +312,7 @@
             }, false);
             that.crslList.addEventListener('mouseleave', setAutoScroll, false)
         }
+        ;
 
         if (that.options.touch) {   // инициализация прокрутки прикосновением
             that.crslList.addEventListener('touchstart', function (e) {
@@ -330,6 +337,7 @@
                 }
             }, false)
         }
+        ;
 
         if (that.options.arrows) {  // инициализация стрелок
             if (!that.options.loop) that.crslList.style.cssText =
@@ -352,12 +360,14 @@
             that.leftArrow.style.display = 'none';
             that.rightArrow.style.display = 'none'
         }
+        ;
 
         if (that.options.dots) {  // инициализация индикаторных точек
             let sum = '', diffNum;
             for (let i = 0; i < that.dotsVisible; i++) {
                 sum += '<span class="ant-dot"></span>'
             }
+            ;
             that.indicatorDots.innerHTML = sum;
             that.indicatorDotsAll = that.crslRoot.querySelectorAll('span.ant-dot');
             // Назначаем точкам обработчик события 'click'
@@ -374,6 +384,7 @@
                     // Если n == that.currentElement ничего не делаем
                 }, false)
             }
+            ;
             that.dotOff(0);  // точка[0] выключена, остальные включены
             for (let i = 1; i < that.dotsVisible; i++) {
                 that.dotOn(i)

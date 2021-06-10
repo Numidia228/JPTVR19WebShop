@@ -33,7 +33,8 @@
                     <c:forEach var="product" items="${cartList}" varStatus="productId">
                         <div class="card p-4">
                             <div class="row">
-                                <div class="col-md-5 col-11 bg-light shadow w-25" style="padding: 1rem">
+                                <div class="col-md-5 col-11 bg-light shadow w-25 d-flex justify-content-center"
+                                     style="padding: 1rem">
                                     <img src="insertCover/${product.cover.path}" class="card-img-top"
                                          alt="cart img"
                                          style="margin: auto auto; max-width: 12rem; max-height: 15rem;">
@@ -75,17 +76,21 @@
                         </div>
                         <hr>
 
-                        <div class="modal fade" id="exampleModal${productId.count}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="exampleModal${productId.count}" tabindex="-1"
+                             aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Описание товара "<i>${product.brand} ${product.series} ${product.model}</i>"
+                                        <h5 class="modal-title" id="exampleModalLabel">Описание товара
+                                            "<i>${product.brand} ${product.series} ${product.model}</i>"
                                         </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Категория: <span style="font-weight: bold">${product.category.categoryName}</span></p>
+                                        <p>Категория: <span
+                                                style="font-weight: bold">${product.category.categoryName}</span></p>
                                         <hr>
                                         <p>Бренд: <span style="font-weight: bold">${product.brand}</span></p>
                                         <p>Серия: <span style="font-weight: bold">${product.series}</span></p>
@@ -201,6 +206,10 @@
                             <p><span>20</span>%</p>
                         </div>
                         <hr/>
+                        <div class="total-amt d-flex justify-content-between font-weight-bold <c:if test="${promoCodeUsed != true}">d-none</c:if>" style="color: #1c7430">
+                            <p>Промо-код (${promoCode.percent}%) </p>
+                            <p>${promoCode.promoCodeName}</p>
+                        </div>
                         <div class="total-amt d-flex justify-content-between font-weight-bold">
                             <p>Общая сумма (с учетом НДС) </p>
                             <p><span>${endPrice}</span>€</p>
@@ -209,23 +218,23 @@
                            class="btn btn-primary text-uppercase">Оплатить</a>
                     </div>
 
-                    <form action="usePromoCode" method="get">
-                        <div class="mt-3 shadow <c:if test="${promoCodeUsed eq true}">d-none</c:if>">
-                            <div class="card">
-                                <div class="card-body">
+                    <div class="mt-3 shadow <c:if test="${promoCodeUsed eq true}">d-none</c:if>">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="usePromoCode" method="get">
                                     <span>Введите промо-код (необязательно)</span>
                                     <div class="mt-2">
-                                        <input type="text" name="promoCode" id="promoCode"
+                                        <input type="text" name="promoCodeName" id="promoCodeName"
                                                class="form-control font-weight-bold"
                                                value="<c:if test="${promoCodeUsed}">${promoCode}</c:if>"
                                                placeholder="Введите промо-код"
                                                <c:if test="${promoCodeUsed}">disabled</c:if>>
                                     </div>
                                     <input class="btn btn-primary btn-sm mt-2" value="Применить" type="submit">
-                                </div>
+                                </form>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
                     <div class="mt-3 shadow p-3 bg-white">
                         <div class="pt-4">
@@ -238,10 +247,3 @@
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"></script>

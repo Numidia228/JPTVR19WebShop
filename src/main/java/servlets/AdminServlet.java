@@ -24,6 +24,12 @@ import java.util.Map;
         "/editUserProfileSettings",
         "/confirmUserFromListUsers",
         "/changeRoleFromListUsers",
+        "/addPromoCode",
+        "/createPromoCode",
+        "/addPromoCode",
+        "/createPromoCode",
+        "/deletePromoCode",
+        "/removePromoCode",
 })
 
 public class AdminServlet extends HttpServlet {
@@ -38,6 +44,8 @@ public class AdminServlet extends HttpServlet {
     private RoleFacade roleFacade;
     @EJB
     private BuyerFacade buyerFacade;
+    @EJB
+    private PromoCodeFacade promoCodeFacade;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -136,7 +144,7 @@ public class AdminServlet extends HttpServlet {
 
                 request.setAttribute("user", user);
                 request.setAttribute("buyer", buyer);
-                request.getRequestDispatcher(LoginServlet.pathToFile.getString("buyerProfileSettings")).forward(request, response);
+                request.getRequestDispatcher(LoginServlet.pathToFile.getString("userProfileSettings")).forward(request, response);
                 break;
 
             case "/editUserProfileSettings":
@@ -300,6 +308,42 @@ public class AdminServlet extends HttpServlet {
 
                 request.setAttribute("info", "Роль пользователя " + '"' + user.getLogin() + '"' + " изменена на " + '"' + role.getRoleName() + '"' + ".");
                 request.getRequestDispatcher("/listBuyers").forward(request, response);
+                break;
+
+            case "/addPromoCode":
+                request.setAttribute("activeAddPromoCode", true);
+                List<PromoCode> promoCodeList = promoCodeFacade.findAll();
+
+                request.setAttribute("promoCodeList", promoCodeList);
+                request.getRequestDispatcher(LoginServlet.pathToFile.getString("addPromoCode")).forward(request, response);
+                break;
+
+            case "/createPromoCode":
+                String promoCodeName = request.getParameter("promoCodeName");
+                String percent = request.getParameter("percent");
+
+                PromoCode promoCode = new PromoCode(promoCodeName, Integer.parseInt(percent));
+                promoCodeFacade.create(promoCode);
+
+                request.setAttribute("info", "Промо-код " + '"' + promoCode.getPromoCodeName() + '"' + " добавлен.");
+                request.getRequestDispatcher(LoginServlet.pathToFile.getString("index")).forward(request, response);
+                break;
+
+            case "/deletePromoCode":
+                promoCodeList = promoCodeFacade.findAll();
+
+                request.setAttribute("promoCodeList", promoCodeList);
+                request.getRequestDispatcher(LoginServlet.pathToFile.getString("removePromoCode")).forward(request, response);
+                break;
+
+            case "/removePromoCode":
+                String promoCodeId = request.getParameter("promoCodeId");
+
+                promoCode = promoCodeFacade.find(Long.parseLong(promoCodeId));
+                promoCodeFacade.remove(promoCode);
+
+                request.setAttribute("info", "Промо-код " + '"' + promoCode.getPromoCodeName() + '"' + " удалён.");
+                request.getRequestDispatcher(LoginServlet.pathToFile.getString("index")).forward(request, response);
                 break;
         }
     }

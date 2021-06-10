@@ -35,10 +35,10 @@ public class CarouselServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
+        HttpSession httpSession = request.getSession(false);
         User user = null;
-        if (session != null) {
-            user = (User) session.getAttribute("user");
+        if (httpSession != null) {
+            user = (User) httpSession.getAttribute("user");
         }
         request.setAttribute("role", userRolesFacade.getTopRoleForUser(user));
 

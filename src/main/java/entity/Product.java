@@ -560,7 +560,7 @@ public class Product implements Serializable {
         this.cover = cover;
     }
 
-    public Product(String brand, String series, String model, String color, String weight, String length, String width, String height, String screenDiagonal, String resolution, String touchScreen, String operationSystem, String cpuClass, String cpuType, String cpuModel, String cpuFrequency, String ramType, String ramSize, String ramClockSpeed, String ssd, String ssdCapacity, String hdd, String hddCapacity, String totalPcMemory, String gpuType, String gpuModel, String diskDrive, String camera, String microphone, String bodyMaterial, String russianKeyboardLayout, String estonianKeyboardLayout, String backlitKeyboard, String waterproofKeyboard, String batteryTechnology, String batteryLife, String guarantee, Double price, Integer count, Category category, Cover cover) {
+    public Product(String brand, String series, String model, String color, String weight, String length, String width, String height, String screenDiagonal, String resolution, String touchScreen, String operationSystem, String cpuType, String cpuClass, String cpuModel, String cpuFrequency, String ramType, String ramSize, String ramClockSpeed, String ssd, String ssdCapacity, String hdd, String hddCapacity, String totalPcMemory, String gpuType, String gpuModel, String diskDrive, String camera, String microphone, String bodyMaterial, String russianKeyboardLayout, String estonianKeyboardLayout, String backlitKeyboard, String waterproofKeyboard, String batteryTechnology, String batteryLife, String guarantee, Double price, Integer count, Category category, Cover cover) {
         this.brand = brand;
         this.series = series;
         this.model = model;

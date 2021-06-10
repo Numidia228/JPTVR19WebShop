@@ -1,5 +1,6 @@
 package servlets;
 
+import entity.Category;
 import entity.Product;
 import entity.User;
 import jakarta.ejb.EJB;
@@ -46,7 +47,14 @@ public class GuestServlet extends HttpServlet {
                 request.setAttribute("activeListProducts", "true");
 
                 List<Product> listProducts = productFacade.findAll();
+                List<Category> categoryList = categoryFacade.findAll();
 
+//                for (int i = 0; i < listProducts.size(); i++) {
+//                    List<Product> cpuList =
+//                }
+
+
+                request.setAttribute("categoryList", categoryList);
                 request.setAttribute("listProducts", listProducts);
                 request.getRequestDispatcher(LoginServlet.pathToFile.getString("listProducts")).forward(request, response);
                 break;

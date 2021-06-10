@@ -13,7 +13,7 @@
 
     <div class="input-group flex-nowrap w-25 my-3 mx-auto">
         <span class="input-group-text">Категория</span>
-        <input class="form-control" type="text" name="categoryName" id="categoryName" placeholder="Игровые ноутбуки">
+        <input class="form-control" type="text" name="categoryName" id="categoryName" placeholder="Игровые ноутбуки" required>
     </div>
     <div class="row w-25 mx-auto mt-5">
         <div class="w-50 mx-auto">

@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
-<nav class="navbar navbar-dark bg-primary navbar-expand-lg" style="margin-bottom: 3rem">
+<nav class="navbar navbar-dark navbar-expand-lg" style="margin-bottom: 3rem; background-color: #1266f1">
     <div class="container-fluid">
         <a class="navbar-brand d-flex flex-column" style="padding: 0 2rem; border-right: 1px solid #ffffff"
            href="index">
@@ -22,12 +23,15 @@
                            aria-current="page" href="addProduct">Добавить товар</a>
                         <a class="nav-link <c:if test="${activeListProducts}">active</c:if>" href="listProducts">Список
                             товаров</a>
-                        <a class="nav-link <c:if test="${activeListBuyers}">active</c:if>" href="listBuyers" id="listBuyers">Список
+                        <a class="nav-link <c:if test="${activeListBuyers}">active</c:if>" href="listBuyers"
+                           id="listBuyers">Список
                             покупателей</a>
                         <a class="nav-link <c:if test="${activeBuyProduct}">active</c:if>" href="listProducts">Купить
                             товар</a>
                         <a class="nav-link <c:if test="${activeListHistory}">active</c:if>" href="showBoughtProduct">Список
                             проданных товаров</a>
+                        <a class="nav-link <c:if test="${activeAddPromoCode}">active</c:if>" href="addPromoCode">Добавить
+                            промо-код</a>
                         <div class="navbar-nav" style="margin-left: auto; margin-right: 2rem">
 
                             <div class="dropdown d-flex">
@@ -66,8 +70,8 @@
                                     <li>
                                         <a class="dropdown-item d-flex justify-content-between"
                                            href="balanceReplenishmentForm"
-                                           style="font-size: 20px; font-weight: 700">
-                                           ${buyer.money}€
+                                           style="font-size: 20px; font-weight: 700;">
+                                            <span style="width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${Math.round(buyer.money * 1000) / 1000}€</span>
                                             <svg
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-cash-stack my-auto"
@@ -128,7 +132,7 @@
                             товар</a>
                         <a class="nav-link <c:if test="${activeListProducts}">active</c:if>" href="listProducts">Список
                             товаров</a>
-                        <div class="navbar-nav" style="margin-left: auto; margin-right: 1rem">
+                        <div class="navbar-nav" style="margin-left: auto; margin-right: 2rem">
                             <div class="dropdown d-flex">
                                 <a type="button" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"
                                    aria-expanded="false">
@@ -162,7 +166,7 @@
                                     <li>
                                         <a class="dropdown-item d-flex justify-content-between"
                                            href="balanceReplenishmentForm">
-                                            ${buyer.money}€
+                                            <span style="width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${Math.round(buyer.money * 1000) / 1000}€</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor" class="bi bi-cash-stack my-auto"
                                                  viewBox="0 0 16 16">
@@ -220,7 +224,7 @@
                             товар</a>
                         <a class="nav-link <c:if test="${activeListProducts}">active</c:if>" href="listProducts">Список
                             товаров</a>
-                        <div class="navbar-nav" style="margin-left: auto; margin-right: 1rem">
+                        <div class="navbar-nav" style="margin-left: auto; margin-right: 2rem">
                             <div class="dropdown d-flex">
                                 <a type="button" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"
                                    aria-expanded="false">
@@ -255,7 +259,7 @@
                                         <a class="dropdown-item d-flex justify-content-between"
                                            href="balanceReplenishmentForm"
                                            style="font-size: 20px; font-weight: 700">
-                                            ${buyer.money}€
+                                            <span style="width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${Math.round(buyer.money * 1000) / 1000}€</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor" class="bi bi-cash-stack my-auto"
                                                  viewBox="0 0 16 16">

@@ -13,7 +13,7 @@
 
     <div class="row w-25 mx-auto mt-5">
         <div class="w-50 mx-auto">
-            <input type="submit" class="btn btn-primary w-100" value="Удалить коллекцию">
+            <input type="submit" class="btn btn-primary w-100" value="Удалить категорию">
         </div>
     </div>
 </form>

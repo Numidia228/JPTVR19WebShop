@@ -1,9 +1,6 @@
 package servlets;
 
-import entity.Buyer;
-import entity.History;
-import entity.Product;
-import entity.User;
+import entity.*;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -87,6 +84,9 @@ public class ProfileServlet extends HttpServlet {
             case "/editProfileForm":
                 buyer = buyerFacade.find(user.getBuyer().getId());
 
+                List<Avatar> listAvatars = avatarFacade.findAll();
+
+                request.setAttribute("listAvatars", listAvatars);
                 request.setAttribute("buyer", buyer);
                 request.getRequestDispatcher(LoginServlet.pathToFile.getString("buyerProfileSettings")).forward(request, response);
                 break;
@@ -111,6 +111,11 @@ public class ProfileServlet extends HttpServlet {
                 String password = request.getParameter("password");
                 String newPassword = request.getParameter("newPassword");
                 String newPasswordRepeat = request.getParameter("newPasswordRepeat");
+
+                String avatarId = request.getParameter("avatarId");
+
+                buyer = buyerFacade.find(user.getBuyer().getId());
+                Avatar avatar = avatarFacade.find(Long.parseLong(avatarId));
 
                 if ("".equals(name) || name == null) {
                     name = null;
@@ -185,8 +190,6 @@ public class ProfileServlet extends HttpServlet {
                     password = user.getPassword();
                 }
 
-                buyer = buyerFacade.find(user.getBuyer().getId());
-
                 buyer.setName(name);
                 buyer.setLastname(lastname);
                 buyer.setEmployee(employee);
@@ -202,6 +205,7 @@ public class ProfileServlet extends HttpServlet {
                 buyer.setUserFacebook(userFacebook);
                 buyer.setUserVk(userVk);
                 buyer.setUserTelegram(userTelegram);
+                buyer.setAvatar(avatar);
                 buyerFacade.edit(buyer);
 
                 user.setPassword(password);

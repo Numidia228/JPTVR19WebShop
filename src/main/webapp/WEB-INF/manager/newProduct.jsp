@@ -58,24 +58,25 @@
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
             <span class="input-group-text">Вес (кг)</span>
-            <input type="number" step="0.01" class="form-control" placeholder="1.35" id="weight" name="weight"
+            <input type="text" step="0.01" class="form-control kgInInput" placeholder="1.35 кг" id="weight" name="weight"
                    value="${weight}">
         </div>
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
             <span class="input-group-text">Длина (мм)</span>
-            <input type="number" class="form-control" placeholder="325" id="length" name="length" value="${length}">
+            <input type="text" class="form-control mmInInput" placeholder="325 мм" id="length" name="length"
+                   value="${length}">
         </div>
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
             <span class="input-group-text">Ширина (мм)</span>
-            <input type="number" class="form-control" placeholder="227" id="width" value="${width}"
+            <input type="text" class="form-control mmInInput" placeholder="227 мм" id="width" value="${width}"
                    name="width">
         </div>
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
             <span class="input-group-text">Высота (мм)</span>
-            <input type="number" class="form-control" placeholder="17" id="height" value="${height}"
+            <input type="text" class="form-control mmInInput" placeholder="17 мм" id="height" value="${height}"
                    name="height">
         </div>
 
@@ -83,7 +84,7 @@
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
             <span class="input-group-text">Диагональ экрана</span>
-            <input type="number" step="0.1" class="form-control" placeholder="13.3" id="screenDiagonal"
+            <input type="text" class="form-control diagonalInInput" placeholder='13.3 "' id="screenDiagonal"
                    name="screenDiagonal"
                    value="${screenDiagonal}">
         </div>
@@ -92,7 +93,7 @@
             <span class="input-group-text">Разрешение экрана</span>
             <label for="resolution"></label>
             <input type="text" minlength="9" maxlength="11" class="form-control resolutionText"
-                   placeholder="1440 x 900" id="resolution" name="resolution" value="${resolution}">
+                   placeholder="1440 x 900 " id="resolution" name="resolution" value="${resolution}">
         </div>
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
@@ -169,7 +170,7 @@
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
             <span class="input-group-text">Частота процессора (ГГц)</span>
-            <input type="number" step="0.1" class="form-control" placeholder="1.8" id="cpuFrequency"
+            <input type="text" class="form-control hhzInInput" placeholder="1.8 ГГц" id="cpuFrequency"
                    name="cpuFrequency"
                    value="${cpuFrequency}">
         </div>
@@ -187,7 +188,7 @@
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
             <span class="input-group-text">Оперативная память (RAM)</span>
-            <input type="number" class="form-control" placeholder="8" id="ramSize"
+            <input type="text" class="form-control gbInInput" placeholder="8 GB" id="ramSize"
                    name="ramSize"
                    value="${ramSize}">
         </div>
@@ -196,29 +197,29 @@
             <span class="input-group-text">Частота оперативной памяти</span>
             <select class="form-select" name="ramClockSpeed">
                 <option disabled class="bg-secondary" style="color: white">DDR4</option>
-                <option value="3333" selected>3333</option>
-                <option value="3200">3200</option>
-                <option value="3000">3000</option>
-                <option value="2800">2800</option>
-                <option value="2666">2666</option>
-                <option value="2400">2400</option>
-                <option value="2133">2133</option>
+                <option value="3333 МГц" selected>3333 МГц</option>
+                <option value="3200 МГц">3200 МГц</option>
+                <option value="3000 МГц">3000 МГц</option>
+                <option value="2800 МГц">2800 МГц</option>
+                <option value="2666 МГц">2666 МГц</option>
+                <option value="2400 МГц">2400 МГц</option>
+                <option value="2133 МГц">2133 МГц</option>
                 <option disabled class="bg-secondary" style="color: white">DDR3</option>
-                <option value="2400">2400</option>
-                <option value="2200">2200</option>
-                <option value="2133">2133</option>
-                <option value="2000">2000</option>
-                <option value="1800">1800</option>
-                <option value="1600">1600</option>
-                <option value="1333">1333</option>
-                <option value="1066">1066</option>
-                <option value="800">800</option>
+                <option value="2400 МГц">2400 МГц</option>
+                <option value="2200 МГц">2200 МГц</option>
+                <option value="2133 МГц">2133 МГц</option>
+                <option value="2000 МГц">2000 МГц</option>
+                <option value="1800 МГц">1800 МГц</option>
+                <option value="1600 МГц">1600 МГц</option>
+                <option value="1333 МГц">1333 МГц</option>
+                <option value="1066 МГц">1066 МГц</option>
+                <option value="800 МГц">800 МГц</option>
                 <option disabled class="bg-secondary" style="color: white">DDR2</option>
-                <option value="1066">1066</option>
-                <option value="800">800</option>
-                <option value="667">667</option>
-                <option value="533">533</option>
-                <option value="400">400</option>
+                <option value="1066 МГц">1066 МГц</option>
+                <option value="800 МГц">800 МГц</option>
+                <option value="667 МГц">667 МГц</option>
+                <option value="533 МГц">533 МГц</option>
+                <option value="400 МГц">400 МГц</option>
             </select>
         </div>
 
@@ -233,35 +234,35 @@
         </div>
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
-            <span class="input-group-text">Объем диска SSD (ГБ)</span>
+            <span class="input-group-text">Объем диска SSD (GB)</span>
             <select class="form-select" name="ssdCapacity">
-                <option value="100" selected>100</option>
-                <option value="120">120</option>
-                <option value="128">128</option>
-                <option value="240">240</option>
-                <option value="250">250</option>
-                <option value="256">256</option>
-                <option value="275">275</option>
-                <option value="400">400</option>
-                <option value="480">480</option>
-                <option value="500">500</option>
-                <option value="512">512</option>
-                <option value="600">600</option>
-                <option value="800">800</option>
-                <option value="960">960</option>
-                <option value="1000">1000</option>
-                <option value="1920">1920</option>
-                <option value="2000">2000</option>
-                <option value="3000">3000</option>
-                <option value="3084">3084</option>
-                <option value="4000">4000</option>
-                <option value="5000">5000</option>
-                <option value="6000">6000</option>
-                <option value="8000">8000</option>
-                <option value="10000">10000</option>
-                <option value="12000">12000</option>
-                <option value="14000">14000</option>
-                <option value="16000">16000</option>
+                <option value="100 GB" selected>100 GB</option>
+                <option value="120 GB">120 GB</option>
+                <option value="128 GB">128 GB</option>
+                <option value="240 GB">240 GB</option>
+                <option value="250 GB">250 GB</option>
+                <option value="256 GB">256 GB</option>
+                <option value="275 GB">275 GB</option>
+                <option value="400 GB">400 GB</option>
+                <option value="480 GB">480 GB</option>
+                <option value="500 GB">500 GB</option>
+                <option value="512 GB">512 GB</option>
+                <option value="600 GB">600 GB</option>
+                <option value="800 GB">800 GB</option>
+                <option value="960 GB">960 GB</option>
+                <option value="1000 GB">1000 GB</option>
+                <option value="1920 GB">1920 GB</option>
+                <option value="2000 GB">2000 GB</option>
+                <option value="3000 GB">3000 GB</option>
+                <option value="3084 GB">3084 GB</option>
+                <option value="4000 GB">4000 GB</option>
+                <option value="5000 GB">5000 GB</option>
+                <option value="6000 GB">6000 GB</option>
+                <option value="8000 GB">8000 GB</option>
+                <option value="10000 GB">10000 GB</option>
+                <option value="12000 GB">12000 GB</option>
+                <option value="14000 GB">14000 GB</option>
+                <option value="16000 GB">16000 GB</option>
                 <option value="Не указано">Не указано</option>
             </select>
         </div>
@@ -275,42 +276,41 @@
         </div>
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
-            <span class="input-group-text">Объем диска HDD (ГБ)</span>
+            <span class="input-group-text">Объем диска HDD (GB)</span>
             <select class="form-select" name="hddCapacity">
-                <option value="100" selected>100</option>
-                <option value="120">120</option>
-                <option value="128">128</option>
-                <option value="240">240</option>
-                <option value="250">250</option>
-                <option value="256">256</option>
-                <option value="275">275</option>
-                <option value="400">400</option>
-                <option value="480">480</option>
-                <option value="500">500</option>
-                <option value="512">512</option>
-                <option value="600">600</option>
-                <option value="800">800</option>
-                <option value="960">960</option>
-                <option value="1000">1000</option>
-                <option value="1920">1920</option>
-                <option value="2000">2000</option>
-                <option value="3000">3000</option>
-                <option value="3084">3084</option>
-                <option value="4000">4000</option>
-                <option value="5000">5000</option>
-                <option value="6000">6000</option>
-                <option value="8000">8000</option>
-                <option value="10000">10000</option>
-                <option value="12000">12000</option>
-                <option value="14000">14000</option>
-                <option value="16000">16000</option>
+                <option value="100" selected>100 GB</option>
+                <option value="120 GB">120 GB</option>
+                <option value="128 GB">128 GB</option>
+                <option value="240 GB">240 GB</option>
+                <option value="250 GB">250 GB</option>
+                <option value="256 GB">256 GB</option>
+                <option value="275 GB">275 GB</option>
+                <option value="400 GB">400 GB</option>
+                <option value="480 GB">480 GB</option>
+                <option value="500 GB">500 GB</option>
+                <option value="600 GB">600 GB</option>
+                <option value="800 GB">800 GB</option>
+                <option value="960 GB">960 GB</option>
+                <option value="1000 GB">1000 GB</option>
+                <option value="1920 GB">1920 GB</option>
+                <option value="2000 GB">2000 GB</option>
+                <option value="3000 GB">3000 GB</option>
+                <option value="3084 GB">3084 GB</option>
+                <option value="4000 GB">4000 GB</option>
+                <option value="5000 GB">5000 GB</option>
+                <option value="6000 GB">6000 GB</option>
+                <option value="8000 GB">8000 GB</option>
+                <option value="10000 GB">10000 GB</option>
+                <option value="12000 GB">12000 GB</option>
+                <option value="14000 GB">14000 GB</option>
+                <option value="16000 GB">16000 GB</option>
                 <option value="Не указано">Не указано</option>
             </select>
         </div>
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
-            <span class="input-group-text">Общий объём памяти (ГБ)</span>
-            <input type="number" class="form-control" placeholder="128" id="totalPcMemory"
+            <span class="input-group-text">Общий объём памяти (GB)</span>
+            <input type="text" class="form-control gbInInput" placeholder="128 GB" id="totalPcMemory"
                    name="totalPcMemory"
                    value="${totalPcMemory}">
         </div>
@@ -431,7 +431,7 @@
 
         <div class="input-group flex-nowrap w-25 my-3 mx-auto">
             <span class="input-group-text">Цена (€)</span>
-            <input type="number" class="form-control" placeholder="500" id="price"
+            <input type="number" class="form-control" step="any" placeholder="500" id="price"
                    name="price"
                    value="${price}">
         </div>
@@ -469,12 +469,117 @@
     </form>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+
 <script>
     $('.resolutionText').on('keyup', function () {
         let foo = $(this).val().split(" x ").join("");
         if (foo.length > 0) {
-            foo = foo.match(new RegExp('.{1,2}', 'g')).join(" x ");
+            foo = foo.match(new RegExp('.{1,4}', 'g')).join(" x ");
         }
         $(this).val(foo);
     });
+</script>
+
+<script>
+    function addKg(val) {
+        return val + " кг";
+    }
+
+    function removeKg(val) {
+        val = val.replace(" кг", "");
+        val = val.replace("кг", "");
+        val = val.replace(" ", "");
+        return val;
+    }
+
+    $(".kgInInput").on("input", function () {
+        var $this = $(this);
+        var val = $this.prop("value");
+        var newVal = removeKg(val);
+        newVal = addKg(newVal);
+        $this.prop("value", newVal);
+    });
+
+
+    function addMm(val) {
+        return val + " мм";
+    }
+
+    function removeMm(val) {
+        val = val.replace(" мм", "");
+        val = val.replace("мм", "");
+        val = val.replace(" ", "");
+        return val;
+    }
+
+    $(".mmInInput").on("input", function () {
+        var $this = $(this);
+        var val = $this.prop("value");
+        var newVal = removeMm(val);
+        newVal = addMm(newVal);
+        $this.prop("value", newVal);
+    });
+
+    function addDiagonal(val) {
+        return val + ' "';
+    }
+
+    function removeDiagonal(val) {
+        val = val.replace(' "', "");
+        val = val.replace('"', "");
+        val = val.replace(" ", "");
+        return val;
+    }
+
+    $(".diagonalInInput").on("input", function () {
+        var $this = $(this);
+        var val = $this.prop("value");
+        var newVal = removeDiagonal(val);
+        newVal = addDiagonal(newVal);
+        $this.prop("value", newVal);
+    });
+
+    function addHhz(val) {
+        return val + ' ГГц';
+    }
+
+    function removeHhz(val) {
+        val = val.replace(' ГГц', "");
+        val = val.replace('ГГц', "");
+        val = val.replace(" ", "");
+        return val;
+    }
+
+    $(".hhzInInput").on("input", function () {
+        var $this = $(this);
+        var val = $this.prop("value");
+        var newVal = removeHhz(val);
+        newVal = addHhz(newVal);
+        $this.prop("value", newVal);
+    });
+
+
+    function addGb(val) {
+        return val + ' GB';
+    }
+
+    function removeGb(val) {
+        val = val.replace(' GB', "");
+        val = val.replace('GB', "");
+        val = val.replace(" ", "");
+        return val;
+    }
+
+    $(".gbInInput").on("input", function () {
+        var $this = $(this);
+        var val = $this.prop("value");
+        var newVal = removeGb(val);
+        newVal = addGb(newVal);
+        $this.prop("value", newVal);
+    });
+
+
 </script>

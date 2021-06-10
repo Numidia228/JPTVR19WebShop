@@ -10,28 +10,28 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path>
                         </svg>
-                    </i> Frequently Asked Questions
+                    </i> Часто задаваемые вопросы
                 </a>
                 <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false" style="display: flex; flex-direction: row">
                     <i style="margin-top: -1px; margin-right: 5px">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
                         </svg>
-                    </i> Profile
+                    </i> Профиль
                 </a>
                 <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false" style="display: flex; flex-direction: row">
                     <i style="margin-top: -1px; margin-right: 5px">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                             <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"></path>
                         </svg>
-                    </i> Account
+                    </i> Аккаунт
                 </a>
                 <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false" style="display: flex; flex-direction: row">
                     <i style="margin-top: -1px; margin-right: 5px">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
                         </svg>
-                    </i> Favorites
+                    </i> Избранное
                 </a>
                 <a href="#tab5" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab5" aria-selected="false" style="display: flex; flex-direction: row">
                     <i style="margin-top: -1px; margin-right: 5px">
@@ -39,7 +39,7 @@
                             <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
                             <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"></path>
                         </svg>
-                    </i> Transactions
+                    </i> Транзакции
                 </a>
                 <a href="#tab6" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab6" aria-selected="false" style="display: flex; flex-direction: row">
                     <i style="margin-top: -1px; margin-right: 5px">
@@ -47,7 +47,7 @@
                             <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"></path>
                             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
                         </svg>
-                    </i> General help
+                    </i> Общая помощь
                 </a>
             </div>
         </div>
@@ -58,26 +58,25 @@
                         <div class="card">
                             <div class="card-header" id="accordion-tab-1-heading-1">
                                 <h5>
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-1" aria-expanded="false" aria-controls="accordion-tab-1-content-1" style="text-decoration: none">Just once I'd like to eat dinner with a celebrity?</button>
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-1" aria-expanded="false" aria-controls="accordion-tab-1-content-1" style="text-decoration: none">Есть ли у вас скидки?</button>
                                 </h5>
                             </div>
                             <div class="collapse" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1" style="">
                                 <div class="card-body">
-                                    <p>Yes, if you make it look like an electrical fire. When you do things right, people won't be sure you've done anything at all. I was having the most wonderful dream. Except you were there, and you were there, and you were there! No argument here. Goodbye, cruel world. Goodbye, cruel lamp. Goodbye, cruel velvet drapes, lined with what would appear to be some sort of cruel muslin and the cute little pom-pom curtain pull cords. Cruel though they may be.</p>
-                                    <p><strong>Example: </strong>Shut up and get to the point!</p>
+                                    <p>Да! Предлагаем скидку 7% при оплате на 1000 евро. Могут быть и другие временные скидки, уточняйте по телефону.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-header" id="accordion-tab-1-heading-2">
                                 <h5>
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-2" aria-expanded="false" aria-controls="accordion-tab-1-content-2" style="text-decoration: none">Bender, I didn't know you liked cooking?</button>
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-2" aria-expanded="false" aria-controls="accordion-tab-1-content-2" style="text-decoration: none">Могу ли я запросить возврат средств?</button>
                                 </h5>
                             </div>
                             <div class="collapse" id="accordion-tab-1-content-2" aria-labelledby="accordion-tab-1-heading-2" data-parent="#accordion-tab-1" style="">
                                 <div class="card-body">
-                                    <p>That's so cute. Can we have Bender Burgers again? Is the Space Pope reptilian!? I wish! It's a nickel. Bender! Ship! Stop bickering or I'm going to come back there and change your opinions manually!</p>
-                                    <p><strong>Example: </strong>Okay, I like a challenge. Is that a cooking show? No argument here.</p>
+                                    <p>Конечно, вы сможете запросить возврат средств в течение 14 дней после покупки.</p>
+                                    <p><strong>Дополнительно: </strong>Если Вы желаете вернуть средства за покупку, тосвяжитесь с оператором по телефону <i>+372 5389 4497</i> или напишите на нашу почту тех. поддержки <i>asd123@lapshop.ee</i>.</p>
                                 </div>
                             </div>
                         </div>

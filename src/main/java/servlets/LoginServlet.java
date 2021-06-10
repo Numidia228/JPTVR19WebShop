@@ -126,6 +126,10 @@ public class LoginServlet extends HttpServlet {
                 httpSession.setAttribute("user", user);
                 httpSession.setAttribute("cartList", cartList);
                 httpSession.setAttribute("buyer", buyer);
+                httpSession.setAttribute("promoCodeUsed", false);
+                httpSession.setAttribute("promoCodeInput", "");
+                httpSession.setAttribute("totalPrice", 0.0);
+                httpSession.setAttribute("endPrice", 0.0);
                 request.setAttribute("info", "Добро пожаловать " + " \"" + user.getLogin() + "\"" + ".");
                 request.setAttribute("role", userRolesFacade.getTopRoleForUser(user));
                 request.getRequestDispatcher(LoginServlet.pathToFile.getString("index")).forward(request, response);

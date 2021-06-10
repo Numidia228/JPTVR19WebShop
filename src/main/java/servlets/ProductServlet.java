@@ -1,10 +1,12 @@
 package servlets;
 
-import entity.Buyer;
-import entity.History;
-import entity.Product;
-import entity.User;
+import entity.*;
 import jakarta.ejb.EJB;
+import jakarta.mail.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @WebServlet(name = "ProductServlet", urlPatterns = {
-        "/buyProductForm",
+        "/buyProduct",
         "/addToBag",
         "/shoppingCartForm",
         "/shoppingCart",
@@ -41,6 +43,8 @@ public class ProductServlet extends HttpServlet {
     private UserRolesFacade userRolesFacade;
     @EJB
     private UserFacade userFacade;
+    @EJB
+    private PromoCodeFacade promoCodeFacade;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,13 +71,23 @@ public class ProductServlet extends HttpServlet {
         httpSession = request.getSession(true);
         httpSession.setAttribute("user", user);
 
+        double totalPrice = (double) httpSession.getAttribute("totalPrice");
+        double endPrice = (double) httpSession.getAttribute("endPrice");
+        httpSession.setAttribute("totalPrice", totalPrice);
+        httpSession.setAttribute("endPrice", endPrice);
+
+        String promoCodeInput = (String) httpSession.getAttribute("promoCodeInput");
+        PromoCode promoCode = promoCodeFacade.findPromoCodeName(promoCodeInput);
+
+        boolean isPromoCodeUsed = (boolean) httpSession.getAttribute("promoCodeUsed");
+
         @SuppressWarnings("unchecked")
         List<Product> cartList = (List<Product>) httpSession.getAttribute("cartList");
 
         request.setAttribute("role", userRolesFacade.getTopRoleForUser(user));
         String path = request.getServletPath();
         switch (path) {
-            case "/buyProductForm":
+            case "/buyProduct":
                 String productId = request.getParameter("productId");
                 Product product = productFacade.find(Long.parseLong(productId));
                 Buyer buyer = buyerFacade.find(user.getBuyer().getId());
@@ -86,7 +100,54 @@ public class ProductServlet extends HttpServlet {
                         buyerFacade.edit(buyer);
                         History history = new History("success", product, buyer, new GregorianCalendar().getTime());
                         historyFacade.create(history);
-                        request.setAttribute("info", "Товар " + '"' + product.getBrand() + " " + product.getSeries() + " " + product.getModel() + '"' + " куплен пользователем: " + '"' + buyer.getName() + " " + buyer.getLastname() + '"' + ".");
+
+                        String message = "Hello, " + buyer.getName() + " " + buyer.getLastname() + "\n"
+                                + "Спасибо, что преобрели товар " + product.getBrand() + " " + product.getSeries() + " " + product.getModel();
+
+
+                        final String username = "danger.228684@gmail.com";
+                        final String password = "Nittispermus123";
+                        String fromEmail = "danger.228684@gmail.com";
+                        String toEmail = "kirya.goritskij@gmail.com";
+
+                        Properties properties = new Properties();
+                        properties.put("mail.smtp.auth", "true");
+                        properties.put("mail.smtp.starttls.enable", "true");
+                        properties.put("mail.smtp.host", "smtp.gmail.com");
+                        properties.put("mail.smtp.port", "587");
+
+                        Session session = Session.getInstance(properties, new Authenticator() {
+                            protected PasswordAuthentication getPasswordAuthentication() {
+                                return new PasswordAuthentication(username, password);
+                            }
+                        });
+                        //Start our mail message
+                        MimeMessage msg = new MimeMessage(session);
+                        try {
+                            msg.setFrom(new InternetAddress(fromEmail));
+                            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+                            msg.setSubject("Subject Line");
+
+                            Multipart emailContent = new MimeMultipart();
+
+                            //Text body part
+                            MimeBodyPart textBodyPart = new MimeBodyPart();
+                            textBodyPart.setText("My multipart text");
+
+                            //Attach body parts
+                            emailContent.addBodyPart(textBodyPart);
+
+                            //Attach multipart to message
+                            msg.setContent(emailContent);
+
+                            Transport.send(msg);
+                            System.out.println("Sent message");
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        request.setAttribute("info", "Товар " + '"' + product.getBrand() + " " + product.getSeries() + " " + product.getModel() + '"' + " куплен пользователем " + '"' + buyer.getName() + " " + buyer.getLastname() + '"' + ".");
                     } else {
                         request.setAttribute("info", "Недостаточно средств на балансе.");
                         History history = new History("reserved", product, buyer, new GregorianCalendar().getTime());
@@ -114,9 +175,12 @@ public class ProductServlet extends HttpServlet {
                 break;
 
             case "/shoppingCartForm":
-                String promoCode = request.getParameter("promoCode");
-                double totalPrice = 0;
-                double endPrice = 0;
+                totalPrice = 0;
+                endPrice = 0;
+
+                promoCodeInput = (String) httpSession.getAttribute("promoCodeInput");
+
+                promoCode = promoCodeFacade.findPromoCodeName(promoCodeInput);
 
                 DateFormatSymbols sym = DateFormatSymbols.getInstance(new Locale("ru", "ru"));
                 sym.setMonths(new String[]{"Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"});
@@ -127,6 +191,7 @@ public class ProductServlet extends HttpServlet {
                 c.add(Calendar.DATE, 3);
                 String before = sdf.format(c.getTime());
                 c.add(Calendar.DATE, 7);
+//                String after = sdf.format(c.getTime());
                 String after = sdf.format(c.getTime());
 
                 for (int i = 0; i < cartList.size(); i++) {
@@ -135,13 +200,17 @@ public class ProductServlet extends HttpServlet {
                     totalPrice += product.getPrice();
                 }
 
-                endPrice = (totalPrice * 0.2) + totalPrice + 5;
+                if (isPromoCodeUsed) {
+                    endPrice = ((totalPrice * promoCode.getPercent() / 100) + totalPrice * 0.2 + 5);
+                } else {
+                    endPrice = (totalPrice * 0.2) + totalPrice + 5;
+                }
+
+                endPrice = (double) Math.round(endPrice * 100) / 100;
 
                 httpSession.setAttribute("cartList", cartList);
-                request.setAttribute("endPrice", endPrice);
-                request.setAttribute("totalPrice", totalPrice);
-                request.setAttribute("isPromoCodeUsed", false);
-                request.setAttribute("promoCode", promoCode);
+                httpSession.setAttribute("endPrice", endPrice);
+                httpSession.setAttribute("totalPrice", totalPrice);
                 request.setAttribute("productCount", cartList.size());
                 request.setAttribute("approxShippingDate", before);
                 request.setAttribute("finalApproxShippingDate", after);
@@ -164,16 +233,18 @@ public class ProductServlet extends HttpServlet {
                 break;
 
             case "/usePromoCode":
-                promoCode = request.getParameter("promoCode");
+                promoCodeInput = request.getParameter("promoCodeName");
 
-                if (promoCode.equals("JPTVR19")) {
-                    // сделать скидку
-                    httpSession.setAttribute("promoCodeUsed", true);
-                    request.setAttribute("info", "Вы успешно применили промо-код!");
-                    request.setAttribute("promoCode", promoCode);
-                }
+                promoCode = promoCodeFacade.findPromoCodeName(promoCodeInput);
 
-                if (!promoCode.equals("JPTVR19")) {
+                try {
+                    if (promoCodeInput.equals(promoCode.getPromoCodeName())) {
+                        httpSession.setAttribute("promoCode", promoCode);
+                        httpSession.setAttribute("promoCodeInput", promoCodeInput);
+                        httpSession.setAttribute("promoCodeUsed", true);
+                        request.setAttribute("info", "Вы успешно применили промо-код!");
+                    }
+                } catch (NullPointerException e) {
                     request.setAttribute("info", "Такого промо-кода не существует!");
                 }
 
@@ -181,38 +252,44 @@ public class ProductServlet extends HttpServlet {
                 break;
 
             case "/paymentForm":
+                endPrice = (double) httpSession.getAttribute("endPrice");
+                totalPrice = (double) httpSession.getAttribute("totalPrice");
+
                 buyer = buyerFacade.find(user.getBuyer().getId());
-                totalPrice = 0;
-                endPrice = 0;
 
                 for (int i = 0; i < cartList.size(); i++) {
                     cartList.get(i);
-                    product = cartList.get(i);
-                    totalPrice += product.getPrice();
                 }
-                endPrice = (totalPrice * 0.2) + totalPrice + 5;
+
+                if (isPromoCodeUsed) {
+                    endPrice = ((totalPrice * promoCode.getPercent() / 100) + totalPrice * 0.2 + 5);
+                } else {
+                    endPrice = (totalPrice * 0.2) + totalPrice + 5;
+                }
+
+                endPrice = (double) Math.round(endPrice * 100) / 100;
 
                 httpSession.setAttribute("cartList", cartList);
+                httpSession.setAttribute("endPrice", endPrice);
+                httpSession.setAttribute("totalPrice", totalPrice);
                 request.setAttribute("buyer", buyer);
-                request.setAttribute("endPrice", endPrice);
-                request.setAttribute("totalPrice", totalPrice);
                 request.getRequestDispatcher(LoginServlet.pathToFile.getString("paymentForm")).forward(request, response);
                 break;
 
             case "/payment":
+                endPrice = (double) httpSession.getAttribute("endPrice");
+                totalPrice = (double) httpSession.getAttribute("totalPrice");
+
+                buyer = buyerFacade.find(user.getBuyer().getId());
                 user = userFacade.find(user.getId());
 
                 double userMoney = user.getBuyer().getMoney();
                 List<Product> productList = new ArrayList<>();
-                endPrice = 0;
-                totalPrice = 0;
-
                 for (Product value : cartList) {
                     product = value;
-                    totalPrice += product.getPrice();
                     productList.add(product);
                 }
-                endPrice = (totalPrice * 0.2) + totalPrice + 5;
+
                 if (userMoney < endPrice) {
                     request.setAttribute("info", "Недостаточно денег для покупки");
                     request.getRequestDispatcher("/listProducts").forward(request, response);
@@ -224,7 +301,6 @@ public class ProductServlet extends HttpServlet {
                     cartList.clear();
                 }
 
-                buyer = buyerFacade.find(user.getBuyer().getId());
                 buyer.setMoney(buyer.getMoney() - endPrice);
                 buyerFacade.edit(buyer);
 

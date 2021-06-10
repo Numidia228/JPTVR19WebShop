@@ -129,17 +129,19 @@
 
                     </c:forEach>
 
-                    <li class="list-group-item d-flex justify-content-between bg-light <c:if test="${promoCodeUsed != true}">d-none</c:if>">
-                        <div class="text-success">
-                            <h6 class="my-0">Промо-код</h6>
-                            <small>${promoCode}</small>
-                        </div>
-                        <span class="text-success">-20%</span>
-                    </li>
+                    <c:if test="${promoCodeUsed eq true}">
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Промо-код</h6>
+                                <small>${promoCode.promoCodeName}</small>
+                            </div>
+                            <span class="text-success">-${promoCode.percent}%</span>
+                        </li>
+                    </c:if>
 
                     <li class="list-group-item d-flex justify-content-between bg-light">
                         <span>Всего (€)</span>
-                        <span id="endPrice" name="endPrice" class="font-weight-bold">${endPrice}€</span>
+                        <span class="font-weight-bold">${endPrice}€</span>
                     </li>
                 </ul>
             </div>
